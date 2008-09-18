@@ -62,6 +62,7 @@ public class miquel extends Activity {
         
         cleanButton.setOnClickListener(new View.OnClickListener(){
         	public void onClick(View view){
+        		userName.setText("");
         		greetingLabel.setText("");
         		greetingLabel.setVisibility(EditText.INVISIBLE);
         		image.setVisibility(ImageView.INVISIBLE);
