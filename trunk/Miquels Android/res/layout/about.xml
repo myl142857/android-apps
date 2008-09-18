@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:background="@color/translucent_red">
+    	
+    	<TextView android:id="@+id/about_text" 
+    	android:layout_width="fill_parent"
+		android:layout_height="wrap_content" 
+		android:text="@string/about_text" />
+		
+		<Button  android:id="@+id/about_ok"
+		android:text="@string/about_ok"
+		android:layout_below="@id/about_text"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"/>
+</RelativeLayout>

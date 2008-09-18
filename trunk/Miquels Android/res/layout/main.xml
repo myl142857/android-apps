@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/translucent_red"
+    android:padding="10px"
+    android:scrollbars="vertical" >
+    
+	<TextView android:id="@+id/hello" 
+		android:layout_width="fill_parent" 
+	    android:layout_height="wrap_content" 
+	    android:text="@string/hello"/>
+	    
+	<TextView android:id="@+id/name_label" 
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/hello"
+		android:text="Com et dius?" />
+		
+	<EditText android:id="@+id/entry"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/name_label" />
+		
+	<Button android:id="@+id/button"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/entry"
+		android:gravity="center"
+		android:layout_alignParentRight="true"
+		android:text="OK" />
+		
+	<ImageView android:id="@+id/image"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/button"
+		android:src="@drawable/mini" />
+
+	<TextView android:id="@+id/greetingLabel"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/image" />
+		
+	<Button android:id="@+id/buttonClean"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/greetingLabel"
+		android:layout_alignParentRight="true"
+		android:text="Clear" />	
+</RelativeLayout>
