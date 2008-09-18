@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Miquel's Android</string>
+<string name="hello">Hola, benvingut a Android.</string>
+<string name="menu_new">New</string>
+<string name="menu_about">About</string>
+<string name="about_text">Program made by Miquel Simon\nwww.miquelsi.net</string>
+<string name="about_ok">OK</string>
+<string name="ok">OK</string>
+</resources>
