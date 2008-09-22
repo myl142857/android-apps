@@ -1,0 +1,11 @@
+#summary Some usefull tips when programming Android.
+#labels tip,trick
+
+= TIPS & TRICKS =
+
+ # Open a URL in a browser window
+
+{{{
+   Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://url"));
+   startActivity(myIntent);
+}}}
