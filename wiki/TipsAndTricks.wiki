@@ -3,9 +3,15 @@
 
 = TIPS & TRICKS =
 
- # Open a URL in a browser window
+== 1. Open a URL in a browser window ==
 
 {{{
    Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://url"));
    startActivity(myIntent);
+}}}
+
+== 2. Show an alert dialog ==
+{{{
+   new AlertDialog.Builder(miquel.this).setMessage("message").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+      public void onClick(DialogInterface dialog, int whichButton) {}}).show();
 }}}
