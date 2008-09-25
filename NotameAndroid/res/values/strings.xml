@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notame Android</string>
+    
+    <string name="menu_1_notame_todos">Notame Todos</string>
+    <string name="menu_1_notame_amigos">Notame Amigos</string>
+    <string name="menu_1_nueva_nota">Nueva Nota</string>
+    <string name="menu_1_configurar">Configurar</string>
+    
+    <string name="username">Usuario</string>
+    <string name="apikey">Clave API</string>
+    <string name="numnotas">Numero de Notas</string>
+    <string name="confirm">Continuar</string>
+    <string name="nota">Nota</string>
+    <string name="send">Enviar</string>
+    
+    <string name="notame_settings">Configurar</string>
+    <string name="notame_view">Ver Notas</string>
+    <string name="notame_friends_view">Ver Amigos</string>
+    <string name="notame_sendnote_view">Enviar Nota</string>
+    
+    <color name="orange">#FF6200</color>
+</resources>

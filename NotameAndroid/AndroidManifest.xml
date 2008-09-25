@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.notame.android">
+    <uses-permission android:name="android.permission.INTERNET" /> 
+    <application android:icon="@drawable/icon">
+        <activity android:name=".NotameAndroid" class=".NotameAndroid" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".NotameSettings" class=".NotameSettings" android:label="@string/notame_settings">
+        </activity>
+        <activity android:name=".NotameView" class=".NotameView" android:label="@string/notame_view">
+        </activity>        
+        <activity android:name=".NotameFriendsView" class=".NotameFriendsView" android:label="@string/notame_friends_view">
+        </activity>        
+        <activity android:name=".SendNoteView" class=".SendNoteView" android:label="@string/notame_sendnote_view">
+        </activity>
+    </application>
+</manifest> 
