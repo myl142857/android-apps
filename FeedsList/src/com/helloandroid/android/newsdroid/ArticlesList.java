@@ -33,11 +33,13 @@ public class ArticlesList extends ListActivity {
 				feed.feedId = icicle.getLong("feed_id");
 				feed.title = icicle.getString("title");
 				feed.url = new URL(icicle.getString("url"));
+				feed.text = icicle.getString("text");
 			} else {
 				Bundle extras = getIntent().getExtras();
 				feed.feedId = extras.getLong("feed_id");
 				feed.title = extras.getString("title");
 				feed.url = new URL(extras.getString("url"));
+				feed.text = extras.getString("text");
 
 				droidDB.deleteAricles(feed.feedId);
 				RSSHandler rh = new RSSHandler();
@@ -73,7 +75,7 @@ public class ArticlesList extends ListActivity {
         List<String> items = new ArrayList<String>();
         articles = droidDB.getArticles(feed.feedId);
         for (Article article : articles) {
-            items.add(article.title);
+            items.add(article.title + "\n" + article.description);
         }
         
         ArrayAdapter<String> notes = 

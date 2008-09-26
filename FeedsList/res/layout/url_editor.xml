@@ -7,11 +7,17 @@
     android:paddingLeft="6dip"
     android:paddingRight="6dip"
     android:paddingBottom="3dip">
+    
+    <TextView android:id="@+id/urlText"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text="URL:" />
    					  
     <EditText android:id="@+id/url" 
         android:maxLines="1" 
         android:layout_marginTop="2dip"
         android:layout_width="wrap_content"
+        android:layout_below="@id/urlText"
       	android:ems="25"
         android:layout_height="wrap_content" 
         android:autoText="true"

@@ -23,6 +23,7 @@ public class RSSHandler extends DefaultHandler {
 	private boolean inItem = false;
 	private boolean inTitle = false;
 	private boolean inLink = false;
+	private boolean inDesc = false;
 
 	// Feed and Article objects to use for temporary storage
 	private Article currentArticle = new Article();
@@ -51,6 +52,8 @@ public class RSSHandler extends DefaultHandler {
 			inItem = true;
 		else if (name.trim().equals("link"))
 			inLink = true;
+		else if (name.trim().equals("description"))
+			inDesc = true;
 	}
 
 	public void endElement(String uri, String name, String qName)
@@ -61,23 +64,26 @@ public class RSSHandler extends DefaultHandler {
 			inItem = false;
 		else if (name.trim().equals("link"))
 			inLink = false;
+		else if (name.trim().equals("description"))
+			inDesc = false;
 
 		// Check if looking for feed, and if feed is complete
 		if (targetFlag == TARGET_FEED && currentFeed.url != null
-				&& currentFeed.title != null) {
+				&& currentFeed.title != null && currentFeed.text != null) {
 
 			// We know everything we need to know, so insert feed and exit
-			droidDB.insertFeed(currentFeed.title, currentFeed.url);
+			droidDB.insertFeed(currentFeed.title, currentFeed.url, currentFeed.text);
 			throw new SAXException();
 		}
 
 		// Check if looking for article, and if article is complete
 		if (targetFlag == TARGET_ARTICLES && currentArticle.url != null
-				&& currentArticle.title != null) {
+				&& currentArticle.title != null && currentArticle.description != null) {
 			droidDB.insertArticle(currentFeed.feedId, currentArticle.title,
-					currentArticle.url);
+					currentArticle.url, currentArticle.description);
 			currentArticle.title = null;
 			currentArticle.url = null;
+			currentArticle.description = null;
 
 			// Lets check if we've hit our limit on number of articles
 			articlesAdded++;
@@ -87,6 +93,9 @@ public class RSSHandler extends DefaultHandler {
 
 	}
 
+	/**
+	 * This is crap
+	 */
 	public void characters(char ch[], int start, int length) {
 
 		String chars = (new String(ch).substring(start, start + length));
@@ -96,11 +105,15 @@ public class RSSHandler extends DefaultHandler {
 			if (!inItem) {
 				if (inTitle)
 					currentFeed.title = chars;
+				if (inDesc)
+					currentFeed.text = chars;
 			} else {
 				if (inLink)
 					currentArticle.url = new URL(chars);
 				if (inTitle)
 					currentArticle.title = chars;
+				if (inDesc)
+					currentArticle.description += chars;
 			}
 		} catch (MalformedURLException e) {
 			Log.e("NewsDroid", e.toString());

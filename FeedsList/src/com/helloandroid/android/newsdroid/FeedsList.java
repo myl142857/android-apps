@@ -38,8 +38,11 @@ public class FeedsList extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-        menu.add(0, ACTIVITY_INSERT, 0,  R.string.menu_insert);
-        menu.add(0, ACTIVITY_DELETE, 0,  R.string.menu_delete);
+        MenuItem item;
+        item = menu.add(0, ACTIVITY_INSERT, 0,  R.string.menu_insert);
+        item.setIcon(R.drawable.ic_menu_add);
+        item = menu.add(0, ACTIVITY_DELETE, 0,  R.string.menu_delete);
+        item.setIcon(R.drawable.ic_menu_delete);
         return true;
     }
 	
@@ -78,7 +81,8 @@ public class FeedsList extends ListActivity {
         Intent i = new Intent(this, ArticlesList.class);
         i.putExtra("feed_id", feeds.get(position).feedId);
         i.putExtra("title", feeds.get(position).title);
-        i.putExtra("url", feeds.get(position).url.toString());        
+        i.putExtra("url", feeds.get(position).url.toString());
+        i.putExtra("text", feeds.get(position).text);
         startActivityForResult(i, ACTIVITY_VIEW);
     }
 	
@@ -88,7 +92,9 @@ public class FeedsList extends ListActivity {
 
         feeds = droidDB.getFeeds();
         for (Feed feed : feeds) {
-            items.add(feed.title);
+        	items.add(feed.title);
+            //items.add(feed.title + "\n" + feed.text);
+            
         }
         
         ArrayAdapter<String> notes = 
