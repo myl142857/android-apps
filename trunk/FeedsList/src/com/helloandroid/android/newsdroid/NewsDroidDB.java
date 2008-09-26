@@ -16,10 +16,10 @@ import android.util.Log;
 public class NewsDroidDB {
 
 	private static final String CREATE_TABLE_FEEDS = "create table feeds (feed_id integer primary key autoincrement, "
-			+ "title text not null, url text not null);";
+			+ "title text not null, url text not null, desc text not null);";
 
 	private static final String CREATE_TABLE_ARTICLES = "create table articles (article_id integer primary key autoincrement, "
-			+ "feed_id int not null, title text not null, url text not null);";
+			+ "feed_id int not null, title text not null, url text not null, desc text not null);";
 
 	private static final String FEEDS_TABLE = "feeds";
 	private static final String ARTICLES_TABLE = "articles";
@@ -44,9 +44,10 @@ public class NewsDroidDB {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-            Log.w("NotameDbAdapter", "Upgrading database from version " + oldVersion + " to "
+            Log.w("NewsDroidDbAdapter", "Upgrading database from version " + oldVersion + " to "
                     + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS newdroid");
+            db.execSQL("DROP TABLE IF EXISTS feeds");
+            db.execSQL("DROP TABLE IF EXISTS articles");
             onCreate(db);
         }
     }
@@ -65,11 +66,16 @@ public class NewsDroidDB {
 			}
 		}
 	}
+	
+	public void close() {
+        mDbHelper.close();
+    }
 
-	public boolean insertFeed(String title, URL url) {
+	public boolean insertFeed(String title, URL url, String text) {
 		ContentValues values = new ContentValues();
 		values.put("title", title);
 		values.put("url", url.toString());
+		values.put("desc", text);
 		return (db.insert(FEEDS_TABLE, null, values) > 0);
 	}
 
@@ -77,11 +83,12 @@ public class NewsDroidDB {
 		return (db.delete(FEEDS_TABLE, "feed_id=" + feedId.toString(), null) > 0);
 	}
 
-	public boolean insertArticle(Long feedId, String title, URL url) {
+	public boolean insertArticle(Long feedId, String title, URL url, String desc) {
 		ContentValues values = new ContentValues();
 		values.put("feed_id", feedId);
 		values.put("title", title);
 		values.put("url", url.toString());
+		values.put("desc", desc);
 		return (db.insert(ARTICLES_TABLE, null, values) > 0);
 	}
 
@@ -93,7 +100,7 @@ public class NewsDroidDB {
 		ArrayList<Feed> feeds = new ArrayList<Feed>();
 		try {
 			Cursor c = db.query(FEEDS_TABLE, new String[] { "feed_id", "title",
-					"url" }, null, null, null, null, null);
+					"url", "desc" }, null, null, null, null, null);
 
 			int numRows = c.getCount();
 			c.moveToFirst();
@@ -102,6 +109,7 @@ public class NewsDroidDB {
 				feed.feedId = c.getLong(0);
 				feed.title = c.getString(1);
 				feed.url = new URL(c.getString(2));
+				feed.text = c.getString(3);
 				feeds.add(feed);
 				c.moveToNext();
 			}
@@ -117,7 +125,7 @@ public class NewsDroidDB {
 		ArrayList<Article> articles = new ArrayList<Article>();
 		try {
 			Cursor c = db.query(ARTICLES_TABLE, new String[] { "article_id",
-					"feed_id", "title", "url" },
+					"feed_id", "title", "url", "desc" },
 					"feed_id=" + feedId.toString(), null, null, null, null);
 
 			int numRows = c.getCount();
@@ -128,6 +136,7 @@ public class NewsDroidDB {
 				article.feedId = c.getLong(1);
 				article.title = c.getString(2);
 				article.url = new URL(c.getString(3));
+				article.description = c.getString(4);
 				articles.add(article);
 				c.moveToNext();
 			}
