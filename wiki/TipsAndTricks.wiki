@@ -12,7 +12,7 @@
 
 == 2. Show an alert dialog ==
 {{{
-   new AlertDialog.Builder(miquel.this).setMessage("message").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+   new AlertDialog.Builder(CurrentClass.this).setMessage("message").setPositiveButton("OK", new DialogInterface.OnClickListener() {
       public void onClick(DialogInterface dialog, int whichButton) {}}).show();
 }}}
 
