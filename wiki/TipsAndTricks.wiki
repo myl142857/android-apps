@@ -22,3 +22,7 @@ Don't forget to add this line in AndroidManifest.xml:
 {{{
     <uses-permission android:name="android.permission.INTERNET" />
 }}}
+
+== 4. Show the debug output in a terminal ==
+To see the debug output in a terminal run, while executing the emulator, the command:
+{{{ $ adb logcat *:E }}}
