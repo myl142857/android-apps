@@ -33,3 +33,6 @@ This line shows a notification with a small message:
    Toast.makeText(WorkDetails.this, "Text to show", Toast.LENGTH_SHORT).show();
 }}}
 If you want the notification to last longer, use {{{Toast.LENGTH_LONG}}} instead of {{{Toast.LENGHT_SHORT}}}.
+
+== 6. Change between vertical and horizontal view in the emulator ==
+Just press {{{Ctrl + F12}}}.
